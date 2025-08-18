@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sebuah Cerita Untukmu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <audio id="background-music" loop>
+        <source src="music/your-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <main id="story-container">
+        <div class="background-images">
+            <div class="bg-image" id="bg1" style="background-image: url('images/adegan-1.png');"></div>
+            <div class="bg-image" id="bg2" style="background-image: url('images/adegan-2.png');"></div>
+            <div class="bg-image" id="bg3" style="background-image: url('images/adegan-3.png');"></div>
+            <div class="bg-image" id="bg4" style="background-image: url('images/adegan-4.png');"></div>
+            <div class="bg-image" id="bg5" style="background-image: url('images/adegan-5.png');"></div>
+            <div class="bg-image" id="bg6" style="background-image: url('images/adegan-6.png');"></div>
+        </div>
+
+        <div class="story-content">
+            <section class="story-panel" data-bg="bg1">
+                <div class="opener">
+                    <h2>Sebuah Cerita Untukmu</h2>
+                    <p>Sentuh untuk memulai...</p>
+                    <small>(Nyalakan suara untuk pengalaman terbaik)</small>
+                </div>
+            </section>
+            
+            <section class="story-panel text-panel" data-bg="bg1">
+                <p class="narrative">Duniaku... hanya seluas ini. Hitam dan putih.</p>
+            </section>
+
+            <section class="story-panel text-panel" data-bg="bg2">
+                <p class="narrative">Lalu... kau datang. Membawa sebuah warna yang tak kukenali.</p>
+            </section>
+
+            <section class="story-panel text-panel" data-bg="bg3">
+                <p class="narrative">Setiap langkah bersamamu, duniaku yang pudar mulai menemukan warnanya kembali.</p>
+            </section>
+
+            <section class="story-panel text-panel" data-bg="bg4">
+                <p class="narrative">Tapi di tengah keindahan ini, aku masih bertanya... pantaskah aku?</p>
+            </section>
+            
+            <section class="story-panel text-panel" data-bg="bg5">
+                <p class="narrative">Terkadang, kata-kata yang ingin kuucapkan justru melukai. Maafkan keheninganku.</p>
+            </section>
+            
+            <section class="story-panel text-panel" data-bg="bg6">
+                <p class="narrative">Maka, biarkan ini menjadi jawabannya...</p>
+            </section>
+
+            <section class="story-panel final-panel" data-bg="bg6">
+                <div class="final-wish">
+                    <h1>Selamat Ulang Tahun,</h1>
+                    <h2>[NAMA PANGGILAN DIA]</h2>
+                    <p>Terima kasih telah menjadi warna terindah dalam ceritaku. Semua kebahagiaan di dunia ini, pantas menjadi milikmu.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
