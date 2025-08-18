@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         isScrolling = true;
+        panels.forEach(p => p.classList.remove('is-visible')); // Hapus dari semua panel
+        panels[index].classList.add('is-visible'); // Tambahkan hanya ke panel yang aktif
         panels[index].scrollIntoView({ behavior: 'smooth' });
         
         // Update background
