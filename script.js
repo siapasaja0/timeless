@@ -1,52 +1,79 @@
 document.addEventListener('DOMContentLoaded', () => {
     const music = document.getElementById('background-music');
     const opener = document.querySelector('.opener');
-    const storyPanels = document.querySelectorAll('.story-panel');
+    const panels = document.querySelectorAll('.story-panel');
     const backgroundImages = document.querySelectorAll('.bg-image');
-    let currentBgId = 'bg1';
+    let currentPanelIndex = 0;
+    let isScrolling = false;
+    let touchStartY = 0;
 
-    // Inisialisasi: tampilkan gambar pertama
-    document.getElementById('bg1').classList.add('active');
-    
+    // Fungsi utama untuk pindah panel
+    function goToPanel(index) {
+        if (index < 0 || index >= panels.length || isScrolling) {
+            return;
+        }
+
+        isScrolling = true;
+        panels[index].scrollIntoView({ behavior: 'smooth' });
+        
+        // Update background
+        const newBgId = panels[index].dataset.bg;
+        if (newBgId) {
+            backgroundImages.forEach(img => img.classList.remove('active'));
+            document.getElementById(newBgId).classList.add('active');
+        }
+
+        // Jalankan confetti di panel terakhir
+        if (panels[index].classList.contains('final-panel') || panels[index].classList.contains('colors-panel')) {
+            launchConfetti();
+        }
+
+        currentPanelIndex = index;
+
+        // Beri jeda agar animasi selesai sebelum bisa scroll lagi
+        setTimeout(() => {
+            isScrolling = false;
+        }, 1000); // Jeda 1 detik
+    }
+
     // Mulai musik saat layar pembuka disentuh
     opener.addEventListener('click', () => {
-        music.play().catch(error => console.log("Autoplay ditolak. Perlu interaksi."));
-        opener.parentElement.style.opacity = '0'; // Sembunyikan pesan pembuka
-        setTimeout(() => {
-            opener.parentElement.style.display = 'none';
-        }, 1000);
-    }, { once: true }); // Hanya jalankan sekali
+        music.play().catch(error => console.log("Autoplay ditolak."));
+        goToPanel(1); // Langsung pindah ke panel cerita pertama
+    }, { once: true });
 
-    // Observer untuk animasi saat scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Tambah class untuk animasi teks
-                entry.target.classList.add('is-visible');
+    // Event listener untuk scroll mouse (Desktop)
+    window.addEventListener('wheel', event => {
+        if (isScrolling) return;
 
-                // Ganti gambar latar belakang
-                const newBgId = entry.target.dataset.bg;
-                if (newBgId && newBgId !== currentBgId) {
-                    document.getElementById(currentBgId).classList.remove('active');
-                    document.getElementById(newBgId).classList.add('active');
-                    currentBgId = newBgId;
-                }
-                
-                // Jika panel terakhir, jalankan confetti
-                if (entry.target.classList.contains('final-panel')) {
-                    launchConfetti();
-                }
-            }
-        });
-    }, {
-        threshold: 0.6 // Memicu saat 60% panel terlihat
+        if (event.deltaY > 0) { // Scroll ke bawah
+            goToPanel(currentPanelIndex + 1);
+        } else { // Scroll ke atas
+            goToPanel(currentPanelIndex - 1);
+        }
     });
 
-    storyPanels.forEach(panel => {
-        observer.observe(panel);
+    // Event listener untuk swipe (Mobile)
+    window.addEventListener('touchstart', event => {
+        touchStartY = event.touches[0].clientY;
     });
 
-    // Fungsi Confetti
+    window.addEventListener('touchend', event => {
+        if (isScrolling) return;
+        const touchEndY = event.changedTouches[0].clientY;
+
+        if (touchStartY - touchEndY > 50) { // Swipe ke atas (konten bergerak ke atas)
+            goToPanel(currentPanelIndex + 1);
+        } else if (touchEndY - touchStartY > 50) { // Swipe ke bawah
+            goToPanel(currentPanelIndex - 1);
+        }
+    });
+
+    // Inisialisasi awal
+    document.getElementById('bg1').classList.add('active');
+
+
+    // Fungsi Confetti (masih sama)
     function launchConfetti() {
         const duration = 5 * 1000;
         const animationEnd = Date.now() + duration;
