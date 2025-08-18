@@ -19,51 +19,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function goToPanel(index) {
-        if (index < 0 || index >= panels.length || isScrolling) {
-            return;
-        }
-
-        isScrolling = true;
-        panels.forEach(p => p.classList.remove('is-visible'));
-        panels[index].classList.add('is-visible');
-        panels[index].scrollIntoView({ behavior: 'smooth' });
-
-        const newBgId = panels[index].dataset.bg;
-
-        // Logika Background dan Zoom
-        if (newBgId) {
-            const newBg = document.getElementById(newBgId);
-            backgroundImages.forEach(img => {
-                img.classList.remove('active');
-                img.classList.remove('zooming');
-            });
-            newBg.classList.add('active');
-            newBg.classList.add('zooming');
-        } else {
-            backgroundImages.forEach(img => {
-                img.classList.remove('active');
-                img.classList.remove('zooming');
-            });
-        }
-
-        // Logika Hujan dan Overlay Air
-        if (currentPanel.dataset.bg === 'bg5') {
-            rainContainer.style.opacity = '1';
-            rainContainer.classList.add('active'); // Tambahkan class active
-        } else {
-            rainContainer.style.opacity = '0';
-            rainContainer.classList.remove('active'); // Hapus class active
-        }
-        
-        // Logika Konfeti
-        if (panels[index].classList.contains('final-panel') || panels[index].classList.contains('colors-panel')) {
-            launchConfetti();
-        }
-
-        currentPanelIndex = index;
-
-        setTimeout(() => { isScrolling = false; }, 1200); // Sedikit lebih lama untuk transisi
+    if (index < 0 || index >= panels.length || isScrolling) {
+        return;
     }
+
+    isScrolling = true;
+    const currentPanel = panels[index]; // ++ VARIABEL PENTING YANG HILANG ADA DI SINI
+
+    panels.forEach(p => p.classList.remove('is-visible'));
+    currentPanel.classList.add('is-visible');
+    currentPanel.scrollIntoView({ behavior: 'smooth' });
+
+    const newBgId = currentPanel.dataset.bg;
+
+    // Logika Background dan Zoom
+    if (newBgId) {
+        const newBg = document.getElementById(newBgId);
+        backgroundImages.forEach(img => {
+            img.classList.remove('active');
+            img.classList.remove('zooming');
+        });
+        newBg.classList.add('active');
+        newBg.classList.add('zooming');
+    } else {
+        backgroundImages.forEach(img => {
+            img.classList.remove('active');
+            img.classList.remove('zooming');
+        });
+    }
+
+    // Logika Hujan dan Overlay Air (disempurnakan)
+    // Cek apakah panel saat ini atau panel sebelumnya adalah bg5
+    const prevPanel = panels[index - 1];
+    if (currentPanel.dataset.bg === 'bg5' || (currentPanel.classList.contains('blank-panel') && prevPanel && prevPanel.dataset.bg === 'bg5')) {
+        rainContainer.style.opacity = '1';
+        // Logic untuk water overlay jika ada
+    } else {
+        rainContainer.style.opacity = '0';
+    }
+    
+    // Logika Konfeti
+    if (currentPanel.classList.contains('final-panel') || currentPanel.classList.contains('colors-panel')) {
+        launchConfetti();
+    }
+
+    currentPanelIndex = index;
+
+    setTimeout(() => { isScrolling = false; }, 1200);
+}
 
     opener.addEventListener('click', () => {
         music.play().catch(error => console.log("Autoplay ditolak."));
