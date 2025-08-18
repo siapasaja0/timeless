@@ -39,6 +39,7 @@ body, html {
     background-position: center;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
+    animation: slow-zoom-in 20s linear infinite alternate;
 }
 
 .bg-image.active {
@@ -176,4 +177,8 @@ body, html {
 /* Tampilkan partikel saat background aktif */
 .bg-image.active::after {
     opacity: 0.6; /* Atur transparansi partikel di sini */
+}
+@keyframes slow-zoom-in {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
 }
