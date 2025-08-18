@@ -153,8 +153,8 @@ body, html {
 }
 
 @keyframes flicker-final {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.4; }
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 0.5; }
 }
 
 .bg-image::after {
@@ -165,7 +165,7 @@ body, html {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    opacity: 0; /* Secara default mati total */
+    opacity: 0;
     transition: opacity 1.5s ease-in-out;
 }
 
@@ -173,21 +173,26 @@ body, html {
 #bg2.active::after,
 #bg3.active::after,
 #bg6.active::after {
-    width: 1px; /* Inti bisa lebih kecil */
-    height: 1px;
-    background: #ffeeaa; /* Warna lebih terang */
+    width: 2px; /* Inti cahaya yang seimbang */
+    height: 2px;
+    background: #ffeeaa;
     border-radius: 50%;
-
-    /* NILAI BLUR (ANGKA KE-3) DIPERBESAR UNTUK EFEK GLOW */
+    
+    /* LEBIH BANYAK PARTIKEL & EFEK GLOW LEBIH SEIMBANG */
     box-shadow: 
-        -23vw 8vh 5px 1px #ffeeaa, 25vw 12vh 4px 1px #ffeeaa,
-        -15vw 25vh 6px 1px #ffeeaa, 40vw 32vh 4px 1px #ffeeaa,
+        /* Format: posisi_X posisi_Y blur spread warna */
+        -23vw 8vh  4px 1px #ffeeaa, 25vw 12vh 5px 1px #ffeeaa,
+        -15vw 25vh 6px 2px #ffeeaa, 40vw 32vh 4px 2px #ffeeaa,
         10vw 50vh 5px 1px #ffeeaa, -20vw 65vh 4px 1px #ffeeaa,
-        -45vw 72vh 6px 1px #ffeeaa, 32vw 85vh 5px 1px #ffeeaa,
-        5vw 92vh 4px 1px #ffeeaa, 48vw 98vh 6px 1px #ffeeaa;
-
-    animation: move-particles-final 60s linear infinite, flicker-final 3s ease-in-out infinite alternate;
-    opacity: 0.8; /* Opacity bisa sedikit lebih tinggi */
+        -45vw 72vh 6px 2px #ffeeaa, 32vw 85vh 5px 2px #ffeeaa,
+        5vw 92vh  4px 1px #ffeeaa, 48vw 98vh 6px 1px #ffeeaa,
+        -5vw 18vh 5px 2px #ffeeaa, 55vw 22vh 4px 1px #ffeeaa,
+        -25vw 35vh 6px 1px #ffeeaa, 30vw 42vh 4px 2px #ffeeaa,
+        15vw 60vh 5px 2px #ffeeaa, -30vw 75vh 4px 1px #ffeeaa,
+        -50vw 82vh 6px 1px #ffeeaa, 42vw 95vh 5px 2px #ffeeaa;
+    
+    animation: move-particles-final 50s linear infinite, flicker-final 2.5s ease-in-out infinite alternate;
+    opacity: 0.9;
 }
 
 @keyframes slow-zoom-in {
