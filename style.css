@@ -1,0 +1,135 @@
+:root {
+    --text-color: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.7);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+#story-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Container untuk semua gambar latar */
+.background-images {
+    position: fixed; /* Kunci posisi agar tidak ikut scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Selalu penuhi layar */
+    z-index: 1;
+}
+
+.bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.bg-image.active {
+    opacity: 1;
+}
+
+/* Konten cerita yang bisa di-scroll */
+.story-content {
+    position: relative;
+    z-index: 2;
+}
+
+.story-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Setiap panel setinggi layar */
+    padding: 0 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Panel Pembuka */
+.opener {
+    cursor: pointer;
+}
+.opener h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px var(--shadow-color);
+}
+.opener p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 5px var(--shadow-color);
+}
+.opener small {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Panel Narasi */
+.text-panel {
+    align-items: flex-end; /* Posisi teks di bawah */
+    padding-bottom: 25vh;
+}
+
+.narrative {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; /* Ukuran font di HP */
+    line-height: 1.5;
+    max-width: 90%;
+    text-shadow: 2px 2px 8px var(--shadow-color);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s, transform 1s;
+}
+
+.story-panel.is-visible .narrative {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Panel Final */
+.final-wish {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s 0.5s, transform 1s 0.5s; /* Delay agar muncul setelah scroll */
+}
+
+.story-panel.is-visible .final-wish {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.final-wish h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    margin: 0;
+    font-weight: 700;
+}
+.final-wish h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.final-wish p {
+    font-size: 1.1rem;
+    max-width: 80%;
+    margin: 0 auto;
+    line-height: 1.7;
+}
