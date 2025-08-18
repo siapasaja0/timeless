@@ -43,7 +43,6 @@ body, html {
     background-position: center;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
-    animation: slow-zoom-in 10s linear infinite alternate;
 }
 
 .bg-image.active {
@@ -261,4 +260,7 @@ body, html {
 
 .color-meaning strong {
     font-family: 'Poppins', sans-serif;
+}
+.zooming {
+    animation: slow-zoom-in 10s linear infinite alternate;
 }
