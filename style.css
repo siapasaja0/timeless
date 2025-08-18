@@ -177,7 +177,7 @@ body, html {
         -25vw 25vh 3px 3px #ffdd88, 30vw 32vh 1px 1px #ffdd88,
         15vw 50vh 2px 2px #ffdd88, -30vw 65vh 3px 3px #ffdd88;
         
-    animation: move-particles 60s linear infinite;
+    animation: move-particles 30s linear infinite;
 }
 
 #bg2::after, #bg3::after, #bg4::after, #bg6::after {
