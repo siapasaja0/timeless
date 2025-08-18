@@ -173,19 +173,21 @@ body, html {
 #bg2.active::after,
 #bg3.active::after,
 #bg6.active::after {
-    width: 2px;
-    height: 2px;
-    background: #ffdd88;
+    width: 1px; /* Inti bisa lebih kecil */
+    height: 1px;
+    background: #ffeeaa; /* Warna lebih terang */
     border-radius: 50%;
+
+    /* NILAI BLUR (ANGKA KE-3) DIPERBESAR UNTUK EFEK GLOW */
     box-shadow: 
-        -23vw 8vh 2px 1px #ffdd88, 25vw 12vh 1px 0.8px #ffdd88,
-        -15vw 25vh 3px 1.2px #ffdd88, 40vw 32vh 1px 1px #ffdd88,
-        10vw 50vh 2px 0.9px #ffdd88, -20vw 65vh 1px 1.1px #ffdd88,
-        -45vw 72vh 2px 1.3px #ffdd88, 32vw 85vh 1px 0.7px #ffdd88,
-        5vw 92vh 2px 1px #ffdd88, 48vw 98vh 1px 1.4px #ffdd88;
+        -23vw 8vh 5px 1px #ffeeaa, 25vw 12vh 4px 1px #ffeeaa,
+        -15vw 25vh 6px 1px #ffeeaa, 40vw 32vh 4px 1px #ffeeaa,
+        10vw 50vh 5px 1px #ffeeaa, -20vw 65vh 4px 1px #ffeeaa,
+        -45vw 72vh 6px 1px #ffeeaa, 32vw 85vh 5px 1px #ffeeaa,
+        5vw 92vh 4px 1px #ffeeaa, 48vw 98vh 6px 1px #ffeeaa;
 
     animation: move-particles-final 60s linear infinite, flicker-final 3s ease-in-out infinite alternate;
-    opacity: 0.7; /* Nyalakan opacity HANYA di sini */
+    opacity: 0.8; /* Opacity bisa sedikit lebih tinggi */
 }
 
 @keyframes slow-zoom-in {
