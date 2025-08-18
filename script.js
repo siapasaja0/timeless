@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === LOGIKA BARU UNTUK BACKGROUND & ZOOM ===
     const newBgId = panels[index].dataset.bg;
+    const rainContainer = document.getElementById('rain');
 
     if (newBgId) {
         // Jika panel PUNYA background
@@ -34,12 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Nyalakan background yang benar beserta animasinya
         newBg.classList.add('active');
         newBg.classList.add('zooming');
+        // Nyalakan/Matikan Hujan
+        if (newBgId === 'bg5') {
+            rainContainer.style.opacity = '1';
+        } else {
+            rainContainer.style.opacity = '0';
+        }
     } else {
         // Jika panel KOSONG (layar hitam)
         // Matikan SEMUA background dan animasi
         backgroundImages.forEach(img => {
             img.classList.remove('active');
             img.classList.remove('zooming');
+            rainContainer.style.opacity = '0';
         });
     }
 
