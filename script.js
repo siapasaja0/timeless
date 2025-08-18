@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     isScrolling = true;
-    const currentPanel = panels[index]; // ++ VARIABEL PENTING YANG HILANG ADA DI SINI
+    const currentPanel = panels[index];
 
     panels.forEach(p => p.classList.remove('is-visible'));
     currentPanel.classList.add('is-visible');
@@ -48,14 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Logika Hujan dan Overlay Air (disempurnakan)
-    // Cek apakah panel saat ini atau panel sebelumnya adalah bg5
-    const prevPanel = panels[index - 1];
-    if (currentPanel.dataset.bg === 'bg5' || (currentPanel.classList.contains('blank-panel') && prevPanel && prevPanel.dataset.bg === 'bg5')) {
+    // Logika Hujan dan Overlay Air
+    if (currentPanel.dataset.bg === 'bg5') {
         rainContainer.style.opacity = '1';
-        // Logic untuk water overlay jika ada
+        rainContainer.classList.add('active'); // ++ BARIS BARU: Mengaktifkan overlay
     } else {
         rainContainer.style.opacity = '0';
+        rainContainer.classList.remove('active'); // ++ BARIS BARU: Menonaktifkan overlay
     }
     
     // Logika Konfeti
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentPanelIndex = index;
 
     setTimeout(() => { isScrolling = false; }, 1200);
-}
+    }
 
     opener.addEventListener('click', () => {
         music.play().catch(error => console.log("Autoplay ditolak."));
