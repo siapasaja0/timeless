@@ -9,28 +9,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fungsi utama untuk pindah panel
     function goToPanel(index) {
-        if (index < 0 || index >= panels.length || isScrolling) {
-            return;
-        }
+    if (index < 0 || index >= panels.length || isScrolling) {
+        return;
+    }
 
-        isScrolling = true;
-        panels.forEach(p => p.classList.remove('is-visible')); // Hapus dari semua panel
-        panels[index].classList.add('is-visible'); // Tambahkan hanya ke panel yang aktif
-        panels[index].scrollIntoView({ behavior: 'smooth' });
+    isScrolling = true;
+    panels.forEach(p => p.classList.remove('is-visible'));
+    panels[index].classList.add('is-visible');
+    panels[index].scrollIntoView({ behavior: 'smooth' });
+
+    // === LOGIKA BARU UNTUK BACKGROUND & ZOOM ===
+    const newBgId = panels[index].dataset.bg;
+
+    if (newBgId) {
+        // Jika panel PUNYA background
+        const newBg = document.getElementById(newBgId);
         
-        // Update background
-        const newBgId = panels[index].dataset.bg;
-        if (newBgId) {
-            backgroundImages.forEach(img => {
+        // Matikan semua background lain dulu untuk me-reset
+        backgroundImages.forEach(img => {
             img.classList.remove('active');
-            img.classList.remove('zooming'); // ++ BARIS BARU
+            img.classList.remove('zooming');
         });
 
-        // Temukan background yang baru dan aktifkan
-        const newBg = document.getElementById(newBgId);
-            newBg.classList.add('active');
-            newBg.classList.add('zooming'); // ++ BARIS BARU
-        }
+        // Nyalakan background yang benar beserta animasinya
+        newBg.classList.add('active');
+        newBg.classList.add('zooming');
+    } else {
+        // Jika panel KOSONG (layar hitam)
+        // Matikan SEMUA background dan animasi
+        backgroundImages.forEach(img => {
+            img.classList.remove('active');
+            img.classList.remove('zooming');
+        });
+    }
 
         // Jalankan confetti di panel terakhir
         if (panels[index].classList.contains('final-panel') || panels[index].classList.contains('colors-panel')) {
