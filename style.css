@@ -153,9 +153,8 @@ body, html {
 }
 
 @keyframes flicker {
-    0%, 100% { opacity: 0.6; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.8); }
-    75% { opacity: 0.7; transform: scale(1.1); }
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 0.3; }
 }
 
 .bg-image::after {
@@ -181,7 +180,7 @@ body, html {
         -25vw 25vh 1px 1.2px #ffdd88, 30vw 32vh 2px 0.8px #ffdd88,
         15vw 50vh 1px 1.1px #ffdd88, -30vw 65vh 2px 0.9px #ffdd88;
 
-    animation: move-particles 60s linear infinite, flicker 1.5s ease-in-out infinite alternate; /* Tambahkan animasi flicker */
+    animation: move-particles 60s linear infinite, flicker 3s ease-in-out infinite alternate; /* Tambahkan animasi flicker */
 }
 
 #bg2::after, #bg3::after, #bg4::after, #bg6::after {
