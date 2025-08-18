@@ -21,8 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update background
         const newBgId = panels[index].dataset.bg;
         if (newBgId) {
-            backgroundImages.forEach(img => img.classList.remove('active'));
-            document.getElementById(newBgId).classList.add('active');
+            backgroundImages.forEach(img => {
+            img.classList.remove('active');
+            img.classList.remove('zooming'); // ++ BARIS BARU
+        });
+
+        // Temukan background yang baru dan aktifkan
+        const newBg = document.getElementById(newBgId);
+            newBg.classList.add('active');
+            newBg.classList.add('zooming'); // ++ BARIS BARU
         }
 
         // Jalankan confetti di panel terakhir
