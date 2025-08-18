@@ -46,11 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Logika Hujan
-        if (panels[index].dataset.bg === 'bg5') {
+        // Logika Hujan dan Overlay Air
+        if (currentPanel.dataset.bg === 'bg5') {
             rainContainer.style.opacity = '1';
+            rainContainer.classList.add('active'); // Tambahkan class active
         } else {
             rainContainer.style.opacity = '0';
+            rainContainer.classList.remove('active'); // Hapus class active
         }
         
         // Logika Konfeti
