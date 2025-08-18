@@ -199,3 +199,66 @@ body, html {
     from { transform: scale(1); }
     to { transform: scale(1.1); }
 }
+.colors-panel {
+    align-items: center;
+}
+
+.colors-box {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 25px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s 0.5s, transform 1s 0.5s;
+}
+
+.story-panel.is-visible .colors-box {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.colors-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.colors-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 kolom untuk mobile */
+    gap: 20px;
+}
+
+.color-item {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.color-swatch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    flex-shrink: 0; /* Mencegah lingkaran jadi gepeng */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.color-meaning {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.color-meaning strong {
+    font-family: 'Poppins', sans-serif;
+}
