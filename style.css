@@ -3,6 +3,10 @@
     --shadow-color: rgba(0, 0, 0, 0.7);
 }
 
+html, body {
+    overflow: hidden; /* KUNCI UTAMA: Matikan scrollbar */
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -152,48 +156,44 @@ body, html {
 .bg-image::after {
     content: '';
     position: absolute;
-    /* PENTING: Pindahkan properti partikel langsung ke sini */
     top: 0;
     left: 0;
-    width: 0.4vw; /* DIUBAH: Ukuran elemennya kita kecilkan jadi seukuran partikel */
-    height: 0.4vw; /* DIUBAH: Ukuran elemennya kita kecilkan jadi seukuran partikel */
-    background: #ffdd88; /* DIUBAH: Elemen dasarnya kita beri warna */
-    border-radius: 50%; /* DIUBAH: Jadikan elemennya bulat */
+    width: 2px; /* DIUBAH: Ukuran absolut pakai pixel */
+    height: 2px; /* DIUBAH: Ukuran absolut pakai pixel */
+    background: #ffdd88;
+    border-radius: 50%;
     pointer-events: none;
     opacity: 0;
     transition: opacity 1.5s ease-in-out;
     
-    /* Bayangan ini yang akan menjadi partikel-partikel lainnya */
+    /* DIUBAH: Ukuran partikel (spread) menggunakan pixel */
     box-shadow: 
-        -23vw 8vh 0.4vw 0 #ffdd88, 25vw 12vh 0.2vw 0 #ffdd88,
-        -15vw 25vh 0.3vw 0 #ffdd88, 40vw 32vh 0.2vw 0 #ffdd88,
-        10vw 50vh 0.4vw 0 #ffdd88, -20vw 65vh 0.2vw 0 #ffdd88,
-        -45vw 72vh 0.3vw 0 #ffdd88, 32vw 85vh 0.4vw 0 #ffdd88,
-        5vw 92vh 0.2vw 0 #ffdd88, 48vw 98vh 0.3vw 0 #ffdd88,
-        -5vw 8vh 0.2vw 0 #ffdd88, 55vw 12vh 0.3vw 0 #ffdd88,
-        -25vw 25vh 0.4vw 0 #ffdd88, 30vw 32vh 0.2vw 0 #ffdd88,
-        15vw 50vh 0.3vw 0 #ffdd88, -30vw 65vh 0.4vw 0 #ffdd88;
+        -23vw 8vh 2px 2px #ffdd88, 25vw 12vh 1px 1px #ffdd88,
+        -15vw 25vh 2px 2px #ffdd88, 40vw 32vh 1px 1px #ffdd88,
+        10vw 50vh 3px 3px #ffdd88, -20vw 65vh 2px 2px #ffdd88,
+        -45vw 72vh 2px 2px #ffdd88, 32vw 85vh 3px 3px #ffdd88,
+        5vw 92vh 1px 1px #ffdd88, 48vw 98vh 2px 2px #ffdd88,
+        -5vw 8vh 1px 1px #ffdd88, 55vw 12vh 2px 2px #ffdd88,
+        -25vw 25vh 3px 3px #ffdd88, 30vw 32vh 1px 1px #ffdd88,
+        15vw 50vh 2px 2px #ffdd88, -30vw 65vh 3px 3px #ffdd88;
         
-    /* Animasinya tetap sama */
     animation: move-particles 60s linear infinite;
 }
 
-/* KOSONGKAN BLOK INI KARENA SUDAH PINDAH KE ATAS */
 #bg2::after, #bg3::after, #bg4::after, #bg6::after {
-    /* Properti box-shadow sudah dipindah ke .bg-image::after */
+    /* Kosongkan, karena properti sudah pindah */
 }
 
-/* Tampilkan partikel saat background aktif */
 .bg-image.active::after {
-    opacity: 0; /* Sembunyikan elemen utama... */
+    opacity: 0;
 }
 
-/* ...tapi tampilkan partikel di background yang berwarna */
 #bg2.active::after,
 #bg3.active::after,
 #bg4.active::after,
 #bg6.active::after {
-    opacity: 0.7; /* Atur transparansi partikel di sini */
+    opacity: 0.7;
+}
 }
 @keyframes slow-zoom-in {
     from { transform: scale(1); }
