@@ -137,4 +137,3 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 150); // Hapus class setelah animasi selesai
             }
         });
-    });
