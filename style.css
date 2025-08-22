@@ -451,3 +451,25 @@ body.shake {
         opacity: 0;
     }
 }
+/* STYLING TOMBOL REPLAY */
+.replay-button {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s 1s ease-in-out; /* Delay 1s setelah balon terakhir pecah */
+}
+
+.replay-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
