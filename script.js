@@ -118,5 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
             confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
             confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
         }, 250);
+    
+        const balloons = document.querySelectorAll('.balloon');
+        balloons.forEach(balloon => {
+          balloon.addEventListener('click', () => {
+            balloon.classList.add('popped');
+            // Optional: mainkan suara 'pop' jika mau
+            // document.getElementById('pop-sound').play();
+        });
+    });
     }
 });
