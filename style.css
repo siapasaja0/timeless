@@ -298,29 +298,32 @@ body, html {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.3));
     animation: fall linear infinite;
 }
-/* EFEK PERCIKAN AIR SAAT HUJAN */
+/* EFEK PERCIKAN AIR SAAT HUJAN - VERSI FINAL */
 .water-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('images/water-splatter.png'); /* Ganti dengan gambar tekstur percikan air */
+    top: -50%; /* Diperbesar agar bisa bergerak */
+    left: -50%;
+    width: 200%; /* Diperbesar agar bisa bergerak */
+    height: 200%;
+    background-image: url('images/water-splatter.png');
     background-repeat: repeat;
-    background-size: 200px; /* Sesuaikan ukuran tekstur */
+    background-size: 300px; /* Ukuran tekstur bisa sedikit lebih besar */
     opacity: 0;
     pointer-events: none;
-    z-index: 4; /* Di atas hujan */
-    animation: move-water 5s linear infinite alternate;
+    z-index: 4;
     transition: opacity 1.5s ease-in-out;
+    animation: move-water 10s linear infinite; /* Animasi yang benar */
 }
 
 @keyframes move-water {
-    from { background-position: 0 0; }
-    to { background-position: 400px 400px; } /* Gerakkan tekstur */
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-50px, 25px); }
+    50% { transform: translate(0px, 50px); }
+    75% { transform: translate(50px, 25px); }
+    100% { transform: translate(0, 0); }
 }
 
 /* Tampilkan overlay air hanya saat hujan aktif */
-.rain-container.active + .water-overlay {
-    opacity: 0.5; /* Sesuaikan tingkat visibilitas */
+.rain-container.active ~ .water-overlay { /* Diubah menggunakan ~ (general sibling) */
+    opacity: 0.4;
 }
