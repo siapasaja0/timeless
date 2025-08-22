@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === LOGIKA PRELOADER ===
     window.addEventListener('load', () => {
-        preloader.classList.add('hidden');
+    const preloader = document.getElementById('preloader');
+    preloader.classList.add('hidden');
     });
 
     / === INISIALISASI EFEK VISUAL ===
