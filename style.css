@@ -341,31 +341,31 @@ body, html {
 /* Atas Kiri */
 .balloon:nth-child(1).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-30px); /* Dikurangi dari -40px */
+    transform: scale(1) translateY(-10px); /* Dikurangi dari -40px */
 }
 
 /* Atas Kanan */
 .balloon:nth-child(2).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-30px); /* Dikurangi dari -40px */
+    transform: scale(1) translateY(-10px); /* Dikurangi dari -40px */
 }
 
 /* Tengah */
 .balloon:nth-child(3).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateX(-30px); /* Dikurangi dari -40px */
+    transform: scale(1) translateX(-40px); /* Dikurangi dari -40px */
 }
 
 /* Bawah Kiri */
 .balloon:nth-child(4).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(30px) translateX(-15px); /* Dikurangi dari 40px dan 20px */
+    transform: scale(1) translateY(10px) translateX(-15px); /* Dikurangi dari 40px dan 20px */
 }
 
 /* Bawah Kanan */
 .balloon:nth-child(5).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(30px) translateX(15px); /* Dikurangi dari 40px dan 20px */
+    transform: scale(1) translateY(10px) translateX(15px); /* Dikurangi dari 40px dan 20px */
 }
 
 /* Bonus: Efek layar sedikit bergetar saat balon pecah */
