@@ -17,25 +17,33 @@ body, html {
     color: var(--text-color);
 }
 
-/* STYLING PRELOADER DENGAN BACKGROUND GIF */
+/* STYLING PRELOADER - VERSI OVERLAY GIF */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ffb6c1; /* Warna pink fallback */
-    background-image: url('images/loading-creatures.gif'); /* Panggil GIF di sini */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain; /* 'contain' agar seluruh GIF terlihat, 'cover' jika mau memenuhi layar */
+    /* Ganti background menjadi warna solid sesuai permintaanmu */
+    background-color: #F9BDC1;
     z-index: 9999;
-    transition: opacity 1.5s ease-out, visibility 1.5s;
+    /* Gunakan flexbox untuk menengahkan GIF */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s;
 }
 
 #preloader.hidden {
     opacity: 0;
     visibility: hidden;
+}
+
+/* Styling untuk GIF agar ukurannya pas */
+.loader-gif {
+    /* Tidak perlu set width/height agar ukurannya sesuai asli */
+    max-width: 90%; /* Jaga-jaga agar tidak terlalu besar di layar desktop */
+    max-height: 90%;
 }
 
 @keyframes pulse {
