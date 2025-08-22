@@ -43,10 +43,12 @@ body, html {
 }
 
 .loader-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
+    font-family: 'Cute Font', cursive; /* Ganti font-family */
+    font-size: 2rem; /* Ukuran font bisa disesuaikan */
     color: #fff;
+    opacity: 0.8;
     animation: pulse 2s infinite ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Tambahkan shadow biar lebih terbaca */
 }
 
 @keyframes pulse {
