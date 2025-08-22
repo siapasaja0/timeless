@@ -251,7 +251,7 @@ body, html {
     transition: opacity 1s 0.5s, transform 1s 0.5s;
 }
 
-/* STYLING FINAL UNTUK BALON INTERAKTIF - ANTI-NUMPUK */
+/* STYLING FINAL UNTUK BALON INTERAKTIF - V.FINAL */
 .colors-panel {
     display: flex;
     justify-content: center;
@@ -263,108 +263,92 @@ body, html {
     position: relative;
     width: 90%;
     max-width: 400px;
-    height: 450px; /* Sedikit lebih tinggi untuk ruang teks */
+    height: 450px;
 }
 
-/* Styling dasar balon */
 .balloon {
-    width: 100px;
-    height: 120px;
+    width: 110px; /* Sedikit lebih besar untuk teks panjang */
+    height: 130px;
     background: radial-gradient(circle at 30% 30%, #fff, var(--balloon-color));
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     cursor: pointer;
     position: absolute;
     box-shadow: inset -10px -10px 0 rgba(0,0,0,0.07);
-    transition: transform 0.2s ease-out, background 0.2s ease-out;
+    transition: all 0.2s ease-out;
     animation: float 5s ease-in-out infinite alternate;
+    display: flex; /* Untuk menengahkan teks */
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-/* Mengatur posisi AWAL balon (Layout 2-1-2) */
-.balloon:nth-child(1) { top: 0; left: 15%; }
-.balloon:nth-child(2) { top: 0; right: 15%; }
+/* Mengatur posisi AWAL balon */
+.balloon:nth-child(1) { top: 0; left: 10%; }
+.balloon:nth-child(2) { top: 0; right: 10%; }
 .balloon:nth-child(3) { top: 38%; left: 50%; transform: translateX(-50%); }
-.balloon:nth-child(4) { bottom: 0; left: 20%; }
-.balloon:nth-child(5) { bottom: 0; right: 20%; }
+.balloon:nth-child(4) { bottom: 0; left: 15%; }
+.balloon:nth-child(5) { bottom: 0; right: 15%; }
 
-/* Simpul di bawah balon */
 .balloon::after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    width: 10px;
-    height: 10px;
+    bottom: -10px; width: 10px; height: 10px;
     background: var(--balloon-color);
     border-radius: 50%;
     transition: opacity 0.2s ease-out;
 }
 
-/* Animasi balon mengambang */
 @keyframes float {
-    from { transform: translateY(0); }
-    to { transform: translateY(-20px); }
+    from { transform: translateY(0) translateX(0); }
+    to { transform: translateY(-20px) translateX(0); }
+}
+/* Posisi tengah butuh adjustment karena transform X */
+.balloon:nth-child(3) { animation-name: float-center; }
+@keyframes float-center {
+    from { transform: translateY(0) translateX(-50%); }
+    to { transform: translateY(-20px) translateX(-50%); }
 }
 
-/* Delay animasi berbeda agar tidak sinkron */
 .balloon:nth-child(2) { animation-delay: -2.5s; }
 .balloon:nth-child(3) { animation-delay: -1.5s; }
 .balloon:nth-child(4) { animation-delay: -3.5s; }
 .balloon:nth-child(5) { animation-delay: -0.5s; }
 
-/* Styling teks (sekarang posisinya absolut) */
 .balloon-text {
-    opacity: 0; /* Awalnya tidak terlihat */
-    position: absolute; /* KUNCI UTAMA: Posisinya absolut terhadap .balloon-container */
-    width: 140px; /* Beri lebar agar teks bisa turun baris */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.4s 0.1s ease-in, transform 0.4s 0.1s ease-in;
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1rem; /* Ukuran disesuaikan agar muat */
+    line-height: 1.2;
     color: white;
-    -webkit-text-stroke: 1px #333; /* Outline hitam tipis */
-    transition: opacity 0.4s ease-in;
+    -webkit-text-stroke: 0.5px #333;
     pointer-events: none;
 }
 
-/* Efek saat balon 'pecah' */
 .balloon.popped {
     background: transparent;
     box-shadow: none;
     animation-play-state: paused;
     cursor: default;
 }
-.balloon.popped::after {
-    opacity: 0;
+.balloon.popped::after { opacity: 0; }
+
+/* Inilah selector yang benar dan simpel */
+.balloon.popped .balloon-text {
+    opacity: 1;
+    transform: scale(1);
 }
 
-/* Mengatur posisi AKHIR teks setelah balon pecah (DIJAMIN TIDAK TUMPUK) */
-.balloon:nth-child(1).popped ~ .balloon-container .balloon:nth-child(1) .balloon-text {
-    opacity: 1; top: 5%; left: 5%;
-}
-.balloon:nth-child(2).popped ~ .balloon-container .balloon:nth-child(2) .balloon-text {
-    opacity: 1; top: 5%; right: 5%;
-}
-.balloon:nth-child(3).popped ~ .balloon-container .balloon:nth-child(3) .balloon-text {
-    opacity: 1; top: 40%; left: 50%; transform: translateX(-50%);
-}
-.balloon:nth-child(4).popped ~ .balloon-container .balloon:nth-child(4) .balloon-text {
-    opacity: 1; bottom: 5%; left: 10%;
-}
-.balloon:nth-child(5).popped ~ .balloon-container .balloon:nth-child(5) .balloon-text {
-    opacity: 1; bottom: 5%; right: 10%;
-}
-
-/* Bonus: Efek layar sedikit bergetar saat balon pecah */
 @keyframes screen-shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-2px); }
     75% { transform: translateX(2px); }
 }
-
-body.shake {
-    animation: screen-shake 0.15s ease-in-out;
-}
-
-
+body.shake { animation: screen-shake 0.15s ease-in-out; }
 .zooming {
     animation: slow-zoom-in 10s linear infinite alternate;
 }
