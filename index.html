@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebuah Cerita Untukmu</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png"> <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Poppins:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <div id="preloader"> <div class="loader-text">Mempersiapkan ceritamu...</div>
+    </div>
     <audio id="background-music" loop>
         <source src="music/your-song.mp3" type="audio/mpeg">
     </audio>
@@ -24,6 +26,7 @@
             <div class="bg-image" id="bg4" style="background-image: url('images/adegan-4.png');"></div>
             <div class="bg-image" id="bg5" style="background-image: url('images/adegan-5.png');"></div>
             <div class="bg-image" id="bg6" style="background-image: url('images/adegan-6.png');"></div>
+            <div class="bg-image" id="bg7" style="background-image: url('images/adegan-7.png');"></div>
         </div>
 
         <div class="story-content">
@@ -85,6 +88,7 @@
                  <span class="balloon-text">Semangatmu yang samar namun terasa</span>
               </div>
             </div>
+            <button id="replay-button" class="replay-button">Ulangi Cerita</button> </div>
          </section>
       </div>
     </main>
