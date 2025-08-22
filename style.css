@@ -17,41 +17,25 @@ body, html {
     color: var(--text-color);
 }
 
-/* STYLING UNTUK LOADING SCREEN */
+/* STYLING PRELOADER DENGAN BACKGROUND GIF */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000;
-    background-image: url('images/loading-creatures.gif');
+    background-color: #ffb6c1; /* Warna pink fallback */
+    background-image: url('images/loading-creatures.gif'); /* Panggil GIF di sini */
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
+    background-position: center;
+    background-size: contain; /* 'contain' agar seluruh GIF terlihat, 'cover' jika mau memenuhi layar */
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     transition: opacity 1.5s ease-out, visibility 1.5s;
-    box-sizing: border-box; /* ++ TAMBAHKAN INI ++ */
-    padding-bottom: 25vh; /* ++ TAMBAHKAN INI UNTUK MENGGESER TEKS KE ATAS ++ */
 }
-/* ++ TAMBAHKAN STYLE BARU INI DI BAWAHNYA ++ */
 
 #preloader.hidden {
     opacity: 0;
     visibility: hidden;
-}
-
-.loader-text {
-    font-family: 'Cute Font', cursive; /* Ganti font-family */
-    font-size: 2rem; /* Ukuran font bisa disesuaikan */
-    color: #fff;
-    opacity: 0.8;
-    animation: pulse 2s infinite ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Tambahkan shadow biar lebih terbaca */
 }
 
 @keyframes pulse {
