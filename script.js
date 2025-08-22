@@ -1,33 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // === DEKLARASI SEMUA ELEMEN DI SINI ===
     const music = document.getElementById('background-music');
+    const popSound = document.getElementById('pop-sound');
     const opener = document.querySelector('.opener');
     const panels = document.querySelectorAll('.story-panel');
     const backgroundImages = document.querySelectorAll('.bg-image');
     const rainContainer = document.getElementById('rain');
     const waterOverlay = document.querySelector('.water-overlay');
+    const balloons = document.querySelectorAll('.balloon');
+
     let currentPanelIndex = 0;
     let isScrolling = false;
     let touchStartY = 0;
 
+    // === INISIALISASI EFEK VISUAL ===
     // Membuat percikan air secara dinamis
-    for (let i = 0; i < 15; i++) { // Buat 15 percikan
+    for (let i = 0; i < 15; i++) {
         const drop = document.createElement('div');
         drop.classList.add('splatter-drop');
-
-    // Atur posisi, ukuran, dan waktu acak
-        const size = 20 + Math.random() * 50; // Ukuran antara 20px - 70px
+        const size = 20 + Math.random() * 50;
         drop.style.width = `${size}px`;
         drop.style.height = `${size}px`;
         drop.style.top = `${Math.random() * 100}%`;
         drop.style.left = `${Math.random() * 100}%`;
-        drop.style.animationDelay = `${Math.random() * 7}s`; // Muncul di waktu berbeda
-        drop.style.animationDuration = `${2 + Math.random() * 3}s`; // Durasi hidup berbeda
-
+        drop.style.animationDelay = `${Math.random() * 7}s`;
+        drop.style.animationDuration = `${2 + Math.random() * 3}s`;
         waterOverlay.appendChild(drop);
     }
 
     // Membuat tetesan hujan secara dinamis
-    for (let i = 0; i < 50; i++) { // Buat 50 tetes hujan
+    for (let i = 0; i < 50; i++) {
         const drop = document.createElement('div');
         drop.classList.add('rain-drop');
         drop.style.left = `${Math.random() * 100}%`;
@@ -36,55 +38,60 @@ document.addEventListener('DOMContentLoaded', () => {
         rainContainer.appendChild(drop);
     }
 
+    // === FUNGSI UTAMA ===
     function goToPanel(index) {
-    if (index < 0 || index >= panels.length || isScrolling) {
-        return;
+        if (index < 0 || index >= panels.length || isScrolling) {
+            return;
+        }
+
+        isScrolling = true;
+        const currentPanel = panels[index];
+
+        panels.forEach(p => p.classList.remove('is-visible'));
+        currentPanel.classList.add('is-visible');
+        currentPanel.scrollIntoView({ behavior: 'smooth' });
+
+        const newBgId = currentPanel.dataset.bg;
+
+        // Logika Background & Zoom
+        if (newBgId) {
+            const newBg = document.getElementById(newBgId);
+            backgroundImages.forEach(img => {
+                img.classList.remove('active');
+                img.classList.remove('zooming');
+            });
+            newBg.classList.add('active');
+            newBg.classList.add('zooming');
+        } else {
+            backgroundImages.forEach(img => {
+                img.classList.remove('active');
+                img.classList.remove('zooming');
+            });
+        }
+
+        // Logika Hujan & Splatter
+        if (currentPanel.dataset.bg === 'bg5') {
+            rainContainer.style.opacity = '1';
+            rainContainer.classList.add('active');
+        } else {
+            rainContainer.style.opacity = '0';
+            rainContainer.classList.remove('active');
+        }
+        
+        // Logika Konfeti
+        if (currentPanel.classList.contains('final-panel') || currentPanel.classList.contains('colors-panel')) {
+            launchConfetti();
+        }
+
+        currentPanelIndex = index;
+        setTimeout(() => { isScrolling = false; }, 1200);
     }
 
-    isScrolling = true;
-    const currentPanel = panels[index];
-
-    panels.forEach(p => p.classList.remove('is-visible'));
-    currentPanel.classList.add('is-visible');
-    currentPanel.scrollIntoView({ behavior: 'smooth' });
-
-    const newBgId = currentPanel.dataset.bg;
-
-    // Logika Background dan Zoom
-    if (newBgId) {
-        const newBg = document.getElementById(newBgId);
-        backgroundImages.forEach(img => {
-            img.classList.remove('active');
-            img.classList.remove('zooming');
-        });
-        newBg.classList.add('active');
-        newBg.classList.add('zooming');
-    } else {
-        backgroundImages.forEach(img => {
-            img.classList.remove('active');
-            img.classList.remove('zooming');
-        });
+    function launchConfetti() {
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
     }
 
-    // Logika Hujan dan Overlay Air
-    if (currentPanel.dataset.bg === 'bg5') {
-        rainContainer.style.opacity = '1';
-        rainContainer.classList.add('active'); // ++ BARIS BARU: Mengaktifkan overlay
-    } else {
-        rainContainer.style.opacity = '0';
-        rainContainer.classList.remove('active'); // ++ BARIS BARU: Menonaktifkan overlay
-    }
-    
-    // Logika Konfeti
-    if (currentPanel.classList.contains('final-panel') || currentPanel.classList.contains('colors-panel')) {
-        launchConfetti();
-    }
-
-    currentPanelIndex = index;
-
-    setTimeout(() => { isScrolling = false; }, 1200);
-    }
-
+    // === EVENT LISTENERS ===
     opener.addEventListener('click', () => {
         music.play().catch(error => console.log("Autoplay ditolak."));
         goToPanel(1);
@@ -103,38 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (touchStartY - touchEndY > 50) { goToPanel(currentPanelIndex + 1); } 
         else if (touchEndY - touchStartY > 50) { goToPanel(currentPanelIndex - 1); }
     });
-    
-    document.getElementById('bg1').classList.add('active');
 
-    function launchConfetti() {
-        const duration = 5 * 1000;
-        const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 25, spread: 360, ticks: 60, zIndex: 100 };
-        function randomInRange(min, max) { return Math.random() * (max - min) + min; }
-        const interval = setInterval(() => {
-            const timeLeft = animationEnd - Date.now();
-            if (timeLeft <= 0) return clearInterval(interval);
-            const particleCount = 50 * (timeLeft / duration);
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-            confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
-        }, 250);
-    
-        // GANTI BLOK KODE LAMA UNTUK BALON DENGAN INI
-        const balloons = document.querySelectorAll('.balloon');
-        balloons.forEach(balloon => {
-            balloon.addEventListener('click', () => {
-                // Hanya jalankan jika balon belum pecah
-                if (!balloon.classList.contains('popped')) {
-                    balloon.classList.add('popped');
-            
-                    // Mainkan suara 'pop'
-                    document.getElementById('pop-sound').play();
-
-                    // Bonus: Tambahkan efek getar ke layar
-                    document.body.classList.add('shake');
-                    setTimeout(() => {
-                        document.body.classList.remove('shake');
-                    }, 150); // Hapus class setelah animasi selesai
-                }
-            });
+    // Logika untuk Balon (diletakkan di sini, BUKAN di dalam launchConfetti)
+    balloons.forEach(balloon => {
+        balloon.addEventListener('click', () => {
+            if (!balloon.classList.contains('popped')) {
+                balloon.classList.add('popped');
+                popSound.play().catch(e => console.log("Suara pop error"));
+                document.body.classList.add('shake');
+                setTimeout(() => { document.body.classList.remove('shake'); }, 150);
+            }
         });
+    });
+
+    // Inisialisasi Awal
+    document.getElementById('bg1').classList.add('active');
+});
