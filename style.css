@@ -296,9 +296,9 @@ body, html {
 /* Mengatur posisi 2-1-2 */
 .balloon:nth-child(1) { top: 5%; left: 15%; }
 .balloon:nth-child(2) { top: 5%; right: 15%; }
-.balloon:nth-child(3) { top: 40%; left: 30%; transform: translateX(-50%); } /* Sedikit turun */
-.balloon:nth-child(4) { bottom: 5%; left: 15%; }
-.balloon:nth-child(5) { bottom: 5%; right: 15%; }
+.balloon:nth-child(3) { top: 40%; left: 30%; transform: translateX(-30%); } /* Sedikit turun */
+.balloon:nth-child(4) { bottom: 5%; left: 40%; }
+.balloon:nth-child(5) { bottom: 5%; right: 40%; }
 
 /* Simpul di bawah balon */
 .balloon::after {
@@ -461,28 +461,28 @@ body.shake {
         opacity: 0;
     }
 }
-/* STYLING TOMBOL REPLAY */
+/* STYLING TOMBOL REPLAY - VERSI BARU */
 .replay-button {
     position: absolute;
-    bottom: 50px; /* Naikkan posisinya dari bawah */
+    bottom: 40px; /* Diubah: Posisinya dinaikkan */
     left: 50%;
-    transform: translateX(-50%);
-    background-color: #ffeeaa; /* Warna lebih cerah */
-    border: 2px solid #fdd835; /* Border lebih tebal dan berwarna */
-    color: #333; /* Warna teks lebih gelap */
-    padding: 12px 24px; /* Padding sedikit lebih besar */
-    border-radius: 30px; /* Bentuk sedikit berbeda */
+    background-color: #ffaddd; /* Warna pink yang lebih manis */
+    color: #5d4037; /* Warna teks coklat tua */
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
     cursor: pointer;
-    font-family: 'Cute Font', cursive; /* Font yang sama dengan preloader */
-    font-size: 1.2rem;
+    font-family: 'Cute Font', cursive; /* Pakai font yang sama dengan preloader */
+    font-size: 1.8rem; /* Sedikit lebih besar */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s 0.5s ease-in-out, transform 0.3s ease-in-out;
-    transform: translateX(-50%) translateY(20px); /* Posisi awal sedikit di bawah */
+    transition: opacity 0.5s 1s ease-in-out, transform 0.5s 1s ease-in-out;
+    transform: translateX(-50%) scale(0.8); /* Posisi awal lebih kecil */
 }
 
 .replay-button.visible {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0); /* Muncul ke atas sedikit */
+    transform: translateX(-50%) scale(1); /* Muncul dengan efek membesar */
 }
