@@ -4,9 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const panels = document.querySelectorAll('.story-panel');
     const backgroundImages = document.querySelectorAll('.bg-image');
     const rainContainer = document.getElementById('rain');
+    const waterOverlay = document.querySelector('.water-overlay');
     let currentPanelIndex = 0;
     let isScrolling = false;
     let touchStartY = 0;
+
+    // Membuat percikan air secara dinamis
+    for (let i = 0; i < 15; i++) { // Buat 15 percikan
+        const drop = document.createElement('div');
+        drop.classList.add('splatter-drop');
+
+    // Atur posisi, ukuran, dan waktu acak
+        const size = 20 + Math.random() * 50; // Ukuran antara 20px - 70px
+        drop.style.width = `${size}px`;
+        drop.style.height = `${size}px`;
+        drop.style.top = `${Math.random() * 100}%`;
+        drop.style.left = `${Math.random() * 100}%`;
+        drop.style.animationDelay = `${Math.random() * 7}s`; // Muncul di waktu berbeda
+        drop.style.animationDuration = `${2 + Math.random() * 3}s`; // Durasi hidup berbeda
+
+        waterOverlay.appendChild(drop);
+    }
 
     // Membuat tetesan hujan secara dinamis
     for (let i = 0; i < 50; i++) { // Buat 50 tetes hujan
