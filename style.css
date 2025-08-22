@@ -217,50 +217,86 @@ body, html {
     transition: opacity 1s 0.5s, transform 1s 0.5s;
 }
 
-.story-panel.is-visible .colors-box {
-    opacity: 1;
-    transform: translateY(0);
+/* STYLING BARU UNTUK BALON INTERAKTIF */
+.colors-panel {
+    align-items: flex-end; /* Posisikan container di bawah */
+    padding-bottom: 5vh;
 }
 
-.colors-box h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    margin-top: 0;
-    margin-bottom: 25px;
-    text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 10px;
-}
-
-.colors-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* 1 kolom untuk mobile */
-    gap: 20px;
-}
-
-.color-item {
+.balloon-container {
     display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    width: 100%;
+    height: 300px;
+}
+
+/* Styling dasar balon */
+.balloon {
+    width: 100px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--balloon-color));
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    color: #333;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: left;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    box-shadow: inset -10px -10px 0 rgba(0,0,0,0.07);
+    animation: float 5s ease-in-out infinite alternate;
 }
 
-.color-swatch {
-    width: 40px;
-    height: 40px;
+/* Membuat simpul di bawah balon */
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 10px;
+    height: 10px;
+    background: var(--balloon-color);
     border-radius: 50%;
-    margin-right: 15px;
-    flex-shrink: 0; /* Mencegah lingkaran jadi gepeng */
-    border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-.color-meaning {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
+/* Animasi balon mengambang */
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-30px); }
 }
 
-.color-meaning strong {
-    font-family: 'Poppins', sans-serif;
+/* Beri delay animasi berbeda agar tidak sinkron */
+.balloon:nth-child(2) { animation-delay: -2s; }
+.balloon:nth-child(3) { animation-delay: -1s; }
+.balloon:nth-child(4) { animation-delay: -3s; }
+.balloon:nth-child(5) { animation-delay: -2.5s; }
+
+/* Styling teks di dalam balon (tersembunyi) */
+.balloon-text {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+    transition-delay: 0.2s; /* Muncul setelah balon pecah */
+    font-size: 1.5rem;
+    pointer-events: none; /* Biar tidak mengganggu klik */
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+/* Efek saat balon 'pecah' */
+.balloon.popped {
+    transform: scale(0);
+    opacity: 0;
+    cursor: default;
+    animation: none; /* Matikan animasi float */
+}
+
+.balloon.popped .balloon-text {
+    opacity: 1;
+    transform: scale(1);
+}
 }
 .zooming {
     animation: slow-zoom-in 10s linear infinite alternate;
