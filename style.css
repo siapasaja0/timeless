@@ -317,7 +317,7 @@ body, html {
 }
 .balloon:nth-child(3).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateX(-10px); /* Bisa juga tanpa translateY */
+    transform: scale(1) translateX(-25px); /* Bisa juga tanpa translateY */
 }
 .balloon:nth-child(4).popped .balloon-text {
     opacity: 1;
