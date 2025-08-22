@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preloader.classList.add('hidden');
     });
 
-    / === INISIALISASI EFEK VISUAL ===
+    // === INISIALISASI EFEK VISUAL ===
     // Membuat percikan air secara dinamis
     for (let i = 0; i < 15; i++) {
         const drop = document.createElement('div');
