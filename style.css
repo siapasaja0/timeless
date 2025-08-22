@@ -288,7 +288,7 @@ body, html {
 /* Mengatur posisi 2-1-2 */
 .balloon:nth-child(1) { top: 5%; left: 15%; }
 .balloon:nth-child(2) { top: 5%; right: 15%; }
-.balloon:nth-child(3) { top: 40%; left: 40%; transform: translateX(-40%); } /* Sedikit turun */
+.balloon:nth-child(3) { top: 40%; left: 40%; transform: translateX(-50%); } /* Sedikit turun */
 .balloon:nth-child(4) { bottom: 5%; left: 70%; }
 .balloon:nth-child(5) { bottom: 5%; right: 70%; }
 
@@ -342,12 +342,12 @@ body, html {
 
 .balloon:nth-child(1).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-30px); /* Tambah translateY */
+    transform: scale(1) translateY(-20px); /* Tambah translateY */
 }
 
 .balloon:nth-child(2).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-30px); /* Tambah translateY */
+    transform: scale(1) translateY(-20px); /* Tambah translateY */
 }
 .balloon:nth-child(3).popped .balloon-text {
     opacity: 1;
@@ -355,12 +355,12 @@ body, html {
 }
 .balloon:nth-child(4).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(60px) translateX(30px); /* Tambah translateY */
+    transform: scale(1) translateY(30px) translateX(50px); /* Tambah translateY */
 }
 
 .balloon:nth-child(5).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(60px) translateX(-30px); /* Tambah translateY */
+    transform: scale(1) translateY(30px) translateX(-50px); /* Tambah translateY */
 }
 
 /* Bonus: Efek layar sedikit bergetar saat balon pecah */
