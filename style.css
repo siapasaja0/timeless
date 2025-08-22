@@ -464,22 +464,25 @@ body.shake {
 /* STYLING TOMBOL REPLAY */
 .replay-button {
     position: absolute;
-    bottom: -20px;
+    bottom: 20px; /* Naikkan posisinya dari bawah */
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 50px;
+    background-color: #ffeeaa; /* Warna lebih cerah */
+    border: 2px solid #fdd835; /* Border lebih tebal dan berwarna */
+    color: #333; /* Warna teks lebih gelap */
+    padding: 12px 24px; /* Padding sedikit lebih besar */
+    border-radius: 30px; /* Bentuk sedikit berbeda */
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Cute Font', cursive; /* Font yang sama dengan preloader */
+    font-size: 1.2rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s 1s ease-in-out; /* Delay 1s setelah balon terakhir pecah */
+    transition: opacity 0.5s 0.5s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateX(-50%) translateY(20px); /* Posisi awal sedikit di bawah */
 }
 
 .replay-button.visible {
     opacity: 1;
     pointer-events: auto;
+    transform: translateX(-50%) translateY(0); /* Muncul ke atas sedikit */
 }
