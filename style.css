@@ -308,25 +308,25 @@ body, html {
 
 .balloon:nth-child(1).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-15px); /* Tambah translateY */
+    transform: scale(1) translateY(-20px); /* Tambah translateY */
 }
 
 .balloon:nth-child(2).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-15px); /* Tambah translateY */
+    transform: scale(1) translateY(-20px); /* Tambah translateY */
 }
 .balloon:nth-child(3).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(-10px); /* Bisa juga tanpa translateY */
+    transform: scale(1) translateX(-10px); /* Bisa juga tanpa translateY */
 }
 .balloon:nth-child(4).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(10px); /* Tambah translateY */
+    transform: scale(1) translateY(20px); /* Tambah translateY */
 }
 
 .balloon:nth-child(5).popped .balloon-text {
     opacity: 1;
-    transform: scale(1) translateY(10px); /* Tambah translateY */
+    transform: scale(1) translateY(20px); /* Tambah translateY */
 }
 
 /* Bonus: Efek layar sedikit bergetar saat balon pecah */
