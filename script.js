@@ -120,20 +120,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     
         // GANTI BLOK KODE LAMA UNTUK BALON DENGAN INI
-    const balloons = document.querySelectorAll('.balloon');
-    balloons.forEach(balloon => {
-        balloon.addEventListener('click', () => {
-            // Hanya jalankan jika balon belum pecah
-            if (!balloon.classList.contains('popped')) {
-                balloon.classList.add('popped');
+        const balloons = document.querySelectorAll('.balloon');
+        balloons.forEach(balloon => {
+            balloon.addEventListener('click', () => {
+                // Hanya jalankan jika balon belum pecah
+                if (!balloon.classList.contains('popped')) {
+                    balloon.classList.add('popped');
             
-                // Mainkan suara 'pop'
-                document.getElementById('pop-sound').play();
+                    // Mainkan suara 'pop'
+                    document.getElementById('pop-sound').play();
 
-                // Bonus: Tambahkan efek getar ke layar
-                document.body.classList.add('shake');
-                setTimeout(() => {
-                    document.body.classList.remove('shake');
-                }, 150); // Hapus class setelah animasi selesai
-            }
+                    // Bonus: Tambahkan efek getar ke layar
+                    document.body.classList.add('shake');
+                    setTimeout(() => {
+                        document.body.classList.remove('shake');
+                    }, 150); // Hapus class setelah animasi selesai
+                }
+            });
         });
