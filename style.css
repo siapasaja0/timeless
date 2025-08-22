@@ -321,7 +321,7 @@ body.shake {
     animation: screen-shake 0.15s ease-in-out;
 }
 
-}
+
 .zooming {
     animation: slow-zoom-in 10s linear infinite alternate;
 }
