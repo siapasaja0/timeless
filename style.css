@@ -299,30 +299,44 @@ body, html {
     animation: fall linear infinite;
 }
 
-/* EFEK PERCIKAN AIR SAAT HUJAN - VERSI FINAL & HALUS /
+/* EFEK PERCIKAN AIR BARU (SPLASH ON SCREEN) */
 .water-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/water-splatter.png');
-    background-repeat: repeat;
-    background-size: 150px; / Ukuran tekstur lebih kecil /
-    opacity: 0;
     pointer-events: none;
     z-index: 4;
+    opacity: 0; /* Awalnya transparan */
     transition: opacity 1.5s ease-in-out;
-    animation: subtle-water-move 15s linear infinite alternate; / Animasi lebih lambat dan halus */
 }
 
-@keyframes subtle-water-move {
-0% { transform: translate(10px, -10px) rotate(-2deg); }
-50% { transform: translate(-5px, 5px) rotate(1deg); }
-100% { transform: translate(10px, -10px) rotate(-2deg); }
-}
-
-/* Tampilkan overlay air hanya saat hujan aktif /
+/* Tampilkan container saat hujan aktif */
 .rain-container.active ~ .water-overlay {
-    opacity: 0.3; / Opacity lebih rendah untuk kesan subtil */
+    opacity: 1;
+}
+
+.splatter-drop {
+    position: absolute;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 40% 60% 45% 55% / 50% 45% 55% 50%; /* Bentuk tidak beraturan */
+    filter: blur(1px);
+    /* Animasi siklus hidup: muncul, lalu hilang */
+    animation: splatter-effect ease-out infinite;
+}
+
+@keyframes splatter-effect {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.6; /* Puncak visibilitas */
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
