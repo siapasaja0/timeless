@@ -27,11 +27,16 @@ body, html {
     background-color: #000;
     z-index: 9999;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: opacity 1.5s ease-out, visibility 1.5s;
 }
-
+/* ++ TAMBAHKAN STYLE BARU INI DI BAWAHNYA ++ */
+.loader-gif {
+    width: 150px; /* Atur ukuran GIF-mu di sini */
+    margin-bottom: 20px; /* Beri jarak antara GIF dan teks */
+}
 #preloader.hidden {
     opacity: 0;
     visibility: hidden;
