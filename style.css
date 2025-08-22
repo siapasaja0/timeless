@@ -317,10 +317,10 @@ body, html {
 
 @keyframes move-water {
     from { background-position: 0 0; }
-    to { background-position: 100px 100px; } /* Gerakkan tekstur */
+    to { background-position: 400px 400px; } /* Gerakkan tekstur */
 }
 
 /* Tampilkan overlay air hanya saat hujan aktif */
 .rain-container.active + .water-overlay {
-    opacity: 0.4; /* Sesuaikan tingkat visibilitas */
+    opacity: 0.5; /* Sesuaikan tingkat visibilitas */
 }
