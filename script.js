@@ -119,13 +119,22 @@ document.addEventListener('DOMContentLoaded', () => {
             confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
         }, 250);
     
-        const balloons = document.querySelectorAll('.balloon');
-        balloons.forEach(balloon => {
-          balloon.addEventListener('click', () => {
-            balloon.classList.add('popped');
-            // Optional: mainkan suara 'pop' jika mau
-            document.getElementById('pop-sound').play();
+        // GANTI BLOK KODE LAMA UNTUK BALON DENGAN INI
+    const balloons = document.querySelectorAll('.balloon');
+    balloons.forEach(balloon => {
+        balloon.addEventListener('click', () => {
+            // Hanya jalankan jika balon belum pecah
+            if (!balloon.classList.contains('popped')) {
+                balloon.classList.add('popped');
+            
+                // Mainkan suara 'pop'
+                document.getElementById('pop-sound').play();
+
+                // Bonus: Tambahkan efek getar ke layar
+                document.body.classList.add('shake');
+                setTimeout(() => {
+                    document.body.classList.remove('shake');
+                }, 150); // Hapus class setelah animasi selesai
+            }
         });
     });
-    }
-});
