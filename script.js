@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
           balloon.addEventListener('click', () => {
             balloon.classList.add('popped');
             // Optional: mainkan suara 'pop' jika mau
-            // document.getElementById('pop-sound').play();
+            document.getElementById('pop-sound').play();
         });
     });
     }
